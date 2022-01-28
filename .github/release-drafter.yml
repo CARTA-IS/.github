@@ -1,0 +1,72 @@
+# Release drafter configuration https://github.com/release-drafter/release-drafter#configuration
+# Emojis were chosen to match the https://gitmoji.carloscuesta.me/
+
+name-template: "v$RESOLVED_VERSION"
+tag-template: "v$RESOLVED_VERSION"
+
+categories:
+  - title: ":rocket: Features"
+    labels: [enhancement, feature]
+  - title: ":wrench: Fixes & Refactoring"
+    labels: [bug, refactoring, bugfix, fix]
+  - title: ":package: Build System & CI/CD"
+    labels: [build, github_actions]
+  - title: ":boom: Breaking Changes"
+    labels: [breaking]
+  - title: ":pencil: Documentation"
+    labels: [documentation]
+  - title: ":bricks: Maintenance"
+    labels: [chore, internal]
+  - title: ":checkered_flag: Tests"
+    labels: [test]
+  - title: ":arrow_up: Dependencies updates"
+    labels: [dependencies]
+
+autolabeler:
+  - label: 'documentation'
+    files:
+      - '*.md'
+    branch:
+      - '/docs\/.+/'
+  - label: 'feature'
+    branch:
+      - '/feat\/.+/'
+      - '/feature\/.+/'
+  - label: 'bug'
+    branch:
+      - '/bug\/.+/'
+  - label: 'fix'
+    branch:
+      - '/fix\/.+/'
+      - '/hotfix\/.+/'
+  - label: 'chore'
+    branch:
+      - '/chore\/.+/'
+      - '/internal\/.+/'
+  - label: 'test'
+    branch:
+      - '/test\/.+/'
+
+exclude-labels:
+  - reverted
+  - skip-changelog
+
+version-resolver:
+  major:
+    labels:
+      - 'major'
+  minor:
+    labels:
+      - 'minor'
+  patch:
+    labels:
+      - 'patch'
+  default: patch
+
+template: |
+  ## What’s Changed
+
+  $CHANGES
+
+  $CONTRIBUTORS
+
